@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_split.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/09 22:32:20 by aherman           #+#    #+#             */
+/*   Updated: 2023/02/09 22:33:24 by aherman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	strlen(const char *s)
+#include "pushswap.h"
+
+size_t	ft_strlen(const char *s)
 {
 	size_t	c1;
 
@@ -61,11 +74,11 @@ char	**ft_split(char const *s, char c)
 	c1 = 0;
 	c2 = 0;
 	c3 = -1;
-	while (c1 <= strlen(s))
+	while (c1 <= ft_strlen(s))
 	{
 		if (s[c1] != c && c3 < 0)
 			c3 = c1;
-		else if ((s[c1] == c || c1 == strlen(s)) && c3 >= 0)
+		else if ((s[c1] == c || c1 == ft_strlen(s)) && c3 >= 0)
 		{
 			s1[c2++] = in_tab(s, c3, c1);
 			c3 = -1;

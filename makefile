@@ -6,7 +6,7 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/09 22:09:57 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/09 22:34:00 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = 	src/push_swap.c\
 		src/check_args.c\
 		src/check_atoi.c\
 		src/list_utils.c\
+		src/check_split.c\
 		ft_printf/ft_printf.a\
 
 $(NAME) :

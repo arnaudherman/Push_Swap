@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 22:15:13 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/09 22:33:34 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		ft_isspace(int a);
 int		ft_isdigit(int a);
 void	stacking(t_list *stack, int new_val);
 t_list	*list_init(t_list *stack, int value);
+char	**ft_split(char const *s, char c);
 
 #endif
