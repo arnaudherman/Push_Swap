@@ -1,0 +1,46 @@
+
+#include "pushswap.h"
+
+int	ft_isdigit(int a)
+{
+	if (a >= 48 && a <= 57)
+		return (1);
+	return (0);
+}
+
+int	ft_isspace(int a)
+{
+	if (a == '\t' || a == '\n' || a == '\v'
+		|| a == '\f' || a == '\r' || a == ' ')
+		return (1);
+	return (0);
+}
+
+int	atoi_push_swap(char *str)
+{
+	int	all[3];
+
+	all[0] = 0; //compteur
+	all[1] = 1; //Negatif
+	all[2] = 0; //int de fin
+	while (ft_isspace(str[all[0]]))
+		all[0]++;
+	if (str[all[0]] == '-' || str[all[0]] == '+')
+	{
+		if (str[all[0]] == '-')
+			all[1] = all[1] * -1;
+		all[0]++;
+	}
+	if (ft_isdigit(str[all[0]]))
+	{
+		while (str[all[0]] != '\0' && str[all[0]] <= '9' && str[all[0]] >= '0')
+		{
+			all[2] = all[2] * 10;
+			all[2] = all[2] + (str[all[0]] - '0');
+			all[0]++;
+		}
+	}
+	else
+		ft_exit(); //voir si on peut faire ça
+	return (all[2] * all[1]);
+}
