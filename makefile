@@ -6,7 +6,7 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/09 19:24:21 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/09 22:09:57 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,10 @@ CFLAGS = -Werror -Wall -Wextra -fsanitize=address
 
 RM = rm -rf
 
-SRCS = 	src/main.c\
-		src/index.c\
-		src/ope1.c\
-		src/ope2.c\
-		src/ope3.c\
-		src/ope4.c\
-		src/quick_sort.c\
-		src/sort_handler.c\
-		src/sort_utils.c\
+SRCS = 	src/push_swap.c\
+		src/check_args.c\
+		src/check_atoi.c\
+		src/list_utils.c\
 		ft_printf/ft_printf.a\
 
 $(NAME) :

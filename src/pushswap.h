@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 21:52:04 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/02/09 22:15:13 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ typedef struct s_list
 
 int		main(int argc, char **argv);
 void	ft_exit(void);
-int		atoi_push_swap(char *str);
 void	check_args(int argc, char **argv, t_list *stack_a);
+void	push_atoi(t_list *stack, char **array);
+int		find_occurrences(char **array);
+int		check_sort(t_list *stack);
+int		atoi_push_swap(char *str);
+int		ft_isspace(int a);
+int		ft_isdigit(int a);
+void	stacking(t_list *stack, int new_val);
+t_list	*list_init(t_list *stack, int value);
 
 #endif

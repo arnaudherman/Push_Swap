@@ -1,25 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
+/*   Updated: 2023/02/09 22:12:37 by aherman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "pushswap.h"
-
-void	check_args(int argc, char **argv, t_list *stack_a)
-{
-	char	**array;
-
-	if (argc < 2)
-		exit (1);
-	if (argc == 2)
-	{
-		array = malloc(sizeof(array) * argc + 1);
-		array = ft_split(argv[1], ' ');
-		find_occurrences(array);
-		pushatoi(stack_a, array);
-	}
-	else
-	{
-		find_occurrences(&argv[1]);
-		pushatoi(stack_a, &argv[1]);
-	}
-}
 
 int	check_sort(t_list *stack)
 {
@@ -76,7 +67,6 @@ void	push_atoi(t_list *stack, char **array)
 		c1++;
 	}
 }
-
 
 void	check_args(int argc, char **argv, t_list *stack_a)
 {
