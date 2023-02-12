@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   instruction_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
+/*   Updated: 2023/02/12 19:22:24 by aherman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pushswap.h"
+
 void swap(t_list *stack)
 {
-	t_element *temp;
+	t_element	*temp;
 
 	if (!stack->first || !stack->first->nxt)
-		return;
+		return ;
 	temp = stack->first;
 	stack->first = stack->first->nxt;
 	temp->nxt = stack->first->nxt;
@@ -17,12 +31,12 @@ void swap(t_list *stack)
 }
 
 
-void push(t_list *dest, t_list *src)
+void	push(t_list *dest, t_list *src)
 {
-	 t_element *temp;
+	t_element	*temp;
 
 	if (!src->first)
-		return;
+		return ;
 	temp = src->first;
 	if (src->first == src->last) 
 		src->first = src->last = NULL;
@@ -44,7 +58,7 @@ void push(t_list *dest, t_list *src)
 void	rotate(t_list *stack)
 {
 	t_element	*temp;
-	
+
 	if (!stack->first && !stack->first->nxt)
 		return ;
 	temp = stack->first;
@@ -59,7 +73,7 @@ void	rotate(t_list *stack)
 void	reverse(t_list *stack)
 {
 	t_element	*temp;
-	
+
 	if (!stack->first || !stack->first->nxt)
 		return ;
 	temp = stack->last;
@@ -70,21 +84,3 @@ void	reverse(t_list *stack)
 	stack->first->prev = temp;
 	stack->first = temp;
 }
-
-/* void   reverse(t_list *stack)
-{
-	t_element    *temp_first;
-	t_element    *temp_last;
-	t_element    *temp_second;
-	if (stack->first == NULL || stack->last == NULL)
-		return ;
-	temp_first = stack->first;
-	temp_last = stack->last;
-	temp_second = temp_first->nxt;
-	stack->first = temp_second;
-	temp_second->prev = NULL;
-	stack->last = temp_first;
-	temp_first->nxt = NULL;
-	temp_first->prev = temp_last;
-	temp_last->nxt = stack->first;
-} */

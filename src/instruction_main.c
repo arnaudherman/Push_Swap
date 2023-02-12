@@ -93,7 +93,7 @@ void	pa_pb(t_list *stack_a, t_list *stack_b, char *inst)
 	ft_printf("%s\n", inst);
 }
 
-void ra_rb(t_list *stack_a, t_list *stack_b, char *inst)
+void	ra_rb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "ra") == 0)
 		rotate(stack_a);
