@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 22:05:10 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/13 12:51:51 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	atoi_push_swap(char *str)
 {
 	int	all[3];
 
-	all[0] = 0; //compteur
-	all[1] = 1; //Negatif
-	all[2] = 0; //int de fin
+	all[0] = 0;
+	all[1] = 1;
+	all[2] = 0;
 	while (ft_isspace(str[all[0]]))
 		all[0]++;
 	if (str[all[0]] == '-' || str[all[0]] == '+')
@@ -52,6 +52,6 @@ int	atoi_push_swap(char *str)
 		}
 	}
 	else
-		ft_exit(); //voir si on peut faire ça
+		ft_exit();
 	return (all[2] * all[1]);
 }
