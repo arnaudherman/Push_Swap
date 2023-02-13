@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 12:51:23 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:34:56 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,17 @@ void	ft_swap(t_list *stack);
 void	ft_push(t_list *dst, t_list *src);
 void	ft_rotate(t_list *stack);
 void	ft_reverse(t_list *stack);
+int		ft_strcmp(char *s1, char *s2);
+int		stack_size(t_list *stack);
+int		get_position(t_list *stack);
+void	sort_three(t_list *stack_a, t_list *stack_b);
+
+//instrcution_main
+void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...);
+void	instructions(int num, t_list *stack_a, t_list *stack_b, ...);
+void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst);
+void	pa_pb(t_list *stack_a, t_list *stack_b, char *inst);
+void	ra_rb(t_list *stack_a, t_list *stack_b, char *inst);
+void	rra_rrb(t_list *stack_a, t_list *stack_b, char *inst);
 
 #endif

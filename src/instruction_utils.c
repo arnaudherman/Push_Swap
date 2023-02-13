@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 12:48:13 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:45:16 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_swap(t_list *stack)
 {
-	t_element	temp;
+	t_element	*temp;
 	int			val_temp;
 	int			position_temp;
 
@@ -33,7 +33,7 @@ void	ft_push(t_list *dst, t_list *src)
 	t_element	*temp;
 
 	temp = src->first;
-	if (temp_src->nxt != NULL)
+	if (temp->nxt != NULL)
 	{
 		src->first = temp->nxt;
 		src->first->prev = NULL;
@@ -58,8 +58,6 @@ void	ft_rotate(t_list *stack)
 {
 	t_element	*temp;
 
-	if (!stack->first && !stack->first->nxt)
-		return ;
 	temp = stack->first;
 	stack->first = stack->first->nxt;
 	stack->first->prev = NULL;
@@ -73,8 +71,6 @@ void	ft_reverse(t_list *stack)
 {
 	t_element	*temp;
 
-	if (!stack->first || !stack->first->nxt)
-		return ;
 	temp = stack->last;
 	stack->last = stack->last->prev;
 	stack->last->nxt = NULL;

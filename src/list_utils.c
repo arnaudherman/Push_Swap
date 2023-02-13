@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 22:07:57 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:42:20 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,50 @@ void	stacking(t_list *stack, int new_val)
 	}
 	else
 		stack->first = new_element;
+}
+
+int	get_positionition(t_list *stack)
+{
+	t_element	*current;
+	t_element	*comp;
+	int			comb;
+
+	comb = 0;
+	current = stack->first;
+	while (current)
+	{
+		if (current->position)
+			current->position = 0;
+		current = current->nxt;
+	}
+	current = stack->first;
+	while (current)
+	{
+		comp = stack->first;
+		while (comp)
+		{
+			if (current->val > comp->val)
+				current->position--;
+			comp = comp->nxt;
+		}
+		current->position += current->position * -2 + 1;
+		comb = comb * 10 + current->position;
+		current = current->nxt;
+	}
+	return (comb);
+}
+
+int	stack_size(t_list *stack)
+{
+	t_element	*current;
+	int			size;
+
+	size = 0;
+	current = stack->first;
+	while (current)
+	{
+		current = current->nxt;
+		size++;
+	}
+	return (size);
 }
