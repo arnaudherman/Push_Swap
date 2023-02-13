@@ -6,56 +6,55 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/12 19:22:24 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/13 12:48:13 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void swap(t_list *stack)
+void	ft_swap(t_list *stack)
 {
-	t_element	*temp;
+	t_element	temp;
+	int			val_temp;
+	int			position_temp;
 
-	if (!stack->first || !stack->first->nxt)
-		return ;
 	temp = stack->first;
-	stack->first = stack->first->nxt;
-	temp->nxt = stack->first->nxt;
-	stack->first->prev = NULL;
-	if (temp->nxt)
-		temp->nxt->prev = temp;
-	else
-		stack->last = temp;
-	stack->first->nxt = temp;
-	temp->prev = stack->first;
+	val_temp = temp->val;
+	position_temp = temp->position;
+	temp->val = temp->nxt->val;
+	temp->position = temp->nxt->position;
+	temp = temp->nxt;
+	temp->val = val_temp;
+	temp->position = position_temp;
 }
 
-
-void	push(t_list *dest, t_list *src)
+void	ft_push(t_list *dst, t_list *src)
 {
 	t_element	*temp;
 
-	if (!src->first)
-		return ;
 	temp = src->first;
-	if (src->first == src->last) 
-		src->first = src->last = NULL;
-	else 
+	if (temp_src->nxt != NULL)
 	{
 		src->first = temp->nxt;
 		src->first->prev = NULL;
 	}
-	temp->nxt = dest->first;
-	temp->prev = NULL;
-	if (dest->first)
-		dest->first->prev = temp;
-	dest->first = temp;
-	if (!dest->last)
-		dest->last = temp;
+	else
+	{
+		temp->nxt = NULL;
+		src->first = NULL;
+		src->last = NULL;
+	}
+	if (dst->first != NULL)
+	{
+		temp->nxt = dst->first;
+		temp->nxt->prev = temp;
+	}
+	else
+		dst->last = temp;
+	dst->first = temp;
 }
 
-
-void	rotate(t_list *stack)
+void	ft_rotate(t_list *stack)
 {
 	t_element	*temp;
 
@@ -70,7 +69,7 @@ void	rotate(t_list *stack)
 	stack->last = temp;
 }
 
-void	reverse(t_list *stack)
+void	ft_reverse(t_list *stack)
 {
 	t_element	*temp;
 

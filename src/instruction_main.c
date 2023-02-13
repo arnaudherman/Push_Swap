@@ -73,13 +73,13 @@ void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
 void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "sa") == 0)
-		swap(stack_a);
+		ft_swap(stack_a);
 	else if (ft_strcmp(inst, "sb") == 0)
-		swap(stack_b);
+		ft_swap(stack_b);
 	else if (ft_strcmp(inst, "ss") == 0)
 	{
-		swap(stack_a);
-		swap(stack_b);
+		ft_swap(stack_a);
+		ft_swap(stack_b);
 	}
 	ft_printf("%s\n", inst);
 }
@@ -87,22 +87,22 @@ void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst)
 void	pa_pb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "pa") == 0)
-		push(stack_a, stack_b);
+		ft_push(stack_a, stack_b);
 	else if (ft_strcmp(inst, "pb") == 0)
-		push(stack_b, stack_a);
+		ft_push(stack_b, stack_a);
 	ft_printf("%s\n", inst);
 }
 
 void	ra_rb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "ra") == 0)
-		rotate(stack_a);
+		ft_rotate(stack_a);
 	else if (ft_strcmp(inst, "rb") == 0)
-		rotate(stack_b);
+		ft_rotate(stack_b);
 	else if (ft_strcmp(inst, "rr") == 0)
 	{
-		rotate(stack_a);
-		rotate(stack_b);
+		ft_rotate(stack_a);
+		ft_rotate(stack_b);
 	}
 	ft_printf("%s\n", inst);
 }
@@ -110,13 +110,13 @@ void	ra_rb(t_list *stack_a, t_list *stack_b, char *inst)
 void	rra_rrb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "rra") == 0)
-		reverse(stack_a);
+		ft_reverse(stack_a);
 	else if (ft_strcmp(inst, "rrb") == 0)
-		reverse(stack_b);
+		ft_reverse(stack_b);
 	else if (ft_strcmp(inst, "rrr") == 0)
 	{
-		reverse(stack_a);
-		reverse(stack_b);
+		ft_reverse(stack_a);
+		ft_reverse(stack_b);
 	}
 	ft_printf("%s\n", inst);
 }
