@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:38:53 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:21 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 {

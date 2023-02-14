@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:28:22 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:14 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 int	ft_isdigit(int a)
 {

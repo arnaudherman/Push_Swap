@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 14:45:16 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:24 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 void	ft_swap(t_list *stack)
 {

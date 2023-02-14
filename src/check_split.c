@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:32:20 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 22:33:24 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:18 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 size_t	ft_strlen(const char *s)
 {

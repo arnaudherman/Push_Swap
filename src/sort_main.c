@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:23 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:40:35 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:44 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 void	small_sort(t_list *stack_a, t_list *stack_b, int size)
 {

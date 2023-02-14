@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:41 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:48:39 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:31 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

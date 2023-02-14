@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:31 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:41:31 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:51 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
 
 void	put_index(t_list *stack)
 {

@@ -6,14 +6,14 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:52:06 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:51:12 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
 
-# include "../ft_printf/ft_printf.h"
+# include "../ft_printf/include/ft_printf.h"
 
 typedef struct s_element
 {

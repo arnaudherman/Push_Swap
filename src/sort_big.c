@@ -6,8 +6,8 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:15 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 14:06:56 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:44:37 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../include/pushswap.h"
