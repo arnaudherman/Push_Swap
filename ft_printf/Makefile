@@ -6,40 +6,34 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:50:19 by aherman           #+#    #+#              #
-#    Updated: 2023/02/13 15:01:54 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/14 16:38:31 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf.a
 
-SRCS = ft_printf.c \
-			print_c.c \
-			print_d.c \
-			print_maj_x.c \
-			print_p.c \
-			print_s.c \
-			print_u.c \
-			print_x.c \
+SRCS = src/ft_printf.c \
+			src/print_c.c \
+			src/print_d.c \
+			src/print_maj_x.c \
+			src/print_p.c \
+			src/print_s.c \
+			src/print_u.c \
+			src/print_x.c \
 
-OBJS = ${SRCS:.c=.o}
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I.
+OBJS = $(SRCS:.c=.o)
 
-CC		= gcc
-RM		= rm -f
+all:	$(NAME)
 
-CFLAGS = -Wall -Wextra -Werror
-
-.c.o:
-		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
-
-$(NAME): ${OBJS}
-		ar rcs ${NAME} ${OBJS}
-
-all:	${NAME}
+$(NAME):$(OBJS)
+			ar rc $(NAME) $(OBJS)
 
 clean:
-		${RM} ${OBJS}
+		$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:	clean
-		${RM} ${NAME}
+			$(RM) $(NAME)
 
-re:		fclean all
+re:	fclean $(NAME)

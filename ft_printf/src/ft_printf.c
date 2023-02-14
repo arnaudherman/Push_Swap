@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:50:08 by aherman           #+#    #+#             */
-/*   Updated: 2022/11/10 16:20:40 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:35:15 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static	int	ft_putchar(char c)
 {

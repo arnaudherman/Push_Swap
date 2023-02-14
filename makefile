@@ -6,12 +6,15 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/13 15:52:11 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/14 16:03:57 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
+LPUSH_SWAP = push_swap.a
+
+libmerge = libtool -static -o
 CC = gcc
 
 CFLAGS = -Werror -Wall -Wextra -fsanitize=address
@@ -32,13 +35,13 @@ SRCS = 	src/push_swap.c\
 		src/sort_three.c\
 		src/sort_main.c\
 		src/sort_utils.c\
-		ft_printf/ft_printf.a\
 
 OBJS = ${SRCS:.c=.o}
 
-$(NAME) :  $(OBJS)
-	${MAKE} -sC ft_printf/ all
+$(NAME) : $(OBJS)
+	${MAKE} -C ft_printf
 	gcc $(CFLAGS) $(OBJS) -o $(NAME)
+	ar rcs ${NAME} ${OBJS}
 
 .c.o:
 		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
@@ -54,3 +57,4 @@ clean :
 	make clean -C ft_printf
 	
 re : fclean all
+

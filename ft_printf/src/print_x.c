@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_p.c                                          :+:      :+:    :+:   */
+/*   print_x.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:22:07 by aherman           #+#    #+#             */
-/*   Updated: 2022/11/10 16:21:32 by aherman          ###   ########.fr       */
+/*   Created: 2022/11/09 15:22:15 by aherman           #+#    #+#             */
+/*   Updated: 2023/02/14 16:35:43 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	print_p(unsigned long ull)
+int	print_x(unsigned long n)
 {
 	int	len;
 
 	len = 0;
-	if (ull == 0)
-		return (print_s("0x0"));
+	if (n > 15)
+	{
+		len += print_x(n / 16);
+		len += print_x(n % 16);
+	}
+	else if (n > 9)
+	{
+		len += print_c('a' + n - 10);
+	}
 	else
 	{
-		len += print_s("0x");
-		len += print_x(ull);
+		len += print_c((n + '0'));
 	}
 	return (len);
 }

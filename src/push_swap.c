@@ -6,17 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:47:29 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 12:39:21 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:48:53 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-void	ft_exit(void)
-{
-	ft_printf ("Error\n");
-	exit (EXIT_FAILURE);
-}
 
 int	main(int argc, char **argv)
 {

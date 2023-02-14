@@ -6,11 +6,11 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:22:10 by aherman           #+#    #+#             */
-/*   Updated: 2022/11/10 14:34:31 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:35:30 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	print_s(char *s1)
 {

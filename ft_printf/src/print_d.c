@@ -1,34 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_x.c                                          :+:      :+:    :+:   */
+/*   print_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:22:15 by aherman           #+#    #+#             */
-/*   Updated: 2022/11/10 14:34:50 by aherman          ###   ########.fr       */
+/*   Created: 2022/11/09 15:21:56 by aherman           #+#    #+#             */
+/*   Updated: 2023/02/14 16:35:19 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	print_x(unsigned long n)
+static int	print_di(int n)
 {
 	int	len;
+	int	min;
 
 	len = 0;
-	if (n > 15)
+	min = -2147483648;
+	if (n == min)
 	{
-		len += print_x(n / 16);
-		len += print_x(n % 16);
+		len += print_di(min / 10);
+		len += print_di(min % 10 * -1);
 	}
-	else if (n > 9)
+	else if (n < 0)
 	{
-		len += print_c('a' + n - 10);
+		len += print_c('-');
+		len += print_di(n * -1);
+	}
+	else if (n >= 0 && n <= 9)
+	{
+		len += print_c(n + '0');
 	}
 	else
 	{
-		len += print_c((n + '0'));
+		len += print_di(n / 10);
+		len += print_di(n % 10);
 	}
+	return (len);
+}
+
+int	print_d(int nb)
+{
+	int	len;
+
+	len = print_di(nb);
 	return (len);
 }
