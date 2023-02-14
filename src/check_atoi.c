@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 12:51:51 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:28:22 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	atoi_push_swap(char *str)
 	if (ft_isdigit(str[all[0]]))
 	{
 		while (str[all[0]] != '\0' && str[all[0]] <= '9' && str[all[0]] >= '0')
-		{
-			all[2] = all[2] * 10;
-			all[2] = all[2] + (str[all[0]] - '0');
-			all[0]++;
-		}
+			all[2] = all[2] * 10 + str[all[0]++] - '0';
+		return (all[2] * all[1]);
 	}
 	else
-		ft_exit();
+	{
+		ft_printf("Error\n");
+		exit (1);
+	}
 	return (all[2] * all[1]);
 }

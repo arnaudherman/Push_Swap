@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:47:29 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 14:45:00 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:39:21 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(int argc, char **argv)
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
 	check_args(argc, argv, stack_a);
-	// sort_main(stack_a, stack_b);
+	sort_main(stack_a, stack_b);
 }

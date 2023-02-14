@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/13 14:44:41 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:38:53 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,27 @@
 
 void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 {
-	va_list args;
-	va_start(args, stack_b);
-	char *inst;
-	int size;
+	va_list	args;
+	char	*inst;
+	int		size;
 
+	va_start(args, stack_b);
 	while (num > 0)
 	{	
 		size = stack_size(stack_a);
 		inst = va_arg(args, char *);
-		if (ft_strcmp(inst, "sa") == 0 || ft_strcmp(inst, "sb") == 0|| ft_strcmp(inst, "ss") == 0)
+		if (is_swap(inst))
 			sa_sb(stack_a, stack_b, inst);
-		// else if (ft_strcmp(inst, "pa") == 0 || ft_strcmp(inst, "pb") == 0)
-		// {	
-		// 	pa_pb(stack_a, stack_b, inst);
-		// 	if (ft_strcmp(inst, "pb") == 0)
-		// 	{
-		// 		size--;
-		// 		if (size == 3)
-		// 		{
-		// 			sort_three(stack_a, stack_b);
-		// 			pa_pb(stack_a, stack_b, "pa");
-		// 		}
-		// 		else if (size == 4)
-		// 		{
-		// 			sort_four2(stack_a, stack_b);
-		// 			pa_pb(stack_a, stack_b, "pa");
-		// 			sa_sb(stack_a, stack_b, "sa");		
-		// 		}
-		// 	}
-		// }
-		else if (ft_strcmp(inst, "ra") == 0 || ft_strcmp(inst, "rb") == 0
-		|| ft_strcmp(inst, "rr") == 0)
+		else if (is_push(inst))
+		{
+			pa_pb(stack_a, stack_b, inst);
+			select_sort(inst, size, stack_a, stack_b);
+		}
+		else if (is_rotate(inst))
 			ra_rb(stack_a, stack_b, inst);
-		else if (ft_strcmp(inst, "rra") == 0 || ft_strcmp(inst, "rrb") == 0
-		|| ft_strcmp(inst, "rrr") == 0)
+		else if (is_reverse(inst))
 			rra_rrb(stack_a, stack_b, inst);
-		else
-			ft_printf("Error: instruction '%s' does not exist.", inst);	
-		if (check_sort(stack_a) == 0)
+		if (check_sort(stack_a))
 			return ;
 		num--;
 	}
@@ -60,29 +42,49 @@ void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 
 void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
 {
-	va_list args;
-	va_start(args, stack_b);
-	char *inst;
+	va_list	args;
+	char	*inst;
 
+	va_start(args, stack_b);
 	while (num > 0)
 	{	
 		inst = va_arg(args, char *);
-		if (ft_strcmp(inst, "sa") == 0 || ft_strcmp(inst, "sb") == 0|| ft_strcmp(inst, "ss") == 0)
+		if (is_swap(inst))
 			sa_sb(stack_a, stack_b, inst);
-		else if (ft_strcmp(inst, "pa") == 0 || ft_strcmp(inst, "pb") == 0)
+		else if (is_push(inst))
 			pa_pb(stack_a, stack_b, inst);
-		else if (ft_strcmp(inst, "ra") == 0 || ft_strcmp(inst, "rb") == 0
-		|| ft_strcmp(inst, "rr") == 0)
+		else if (is_rotate(inst))
 			ra_rb(stack_a, stack_b, inst);
-		else if (ft_strcmp(inst, "rra") == 0 || ft_strcmp(inst, "rrb") == 0
-		|| ft_strcmp(inst, "rrr") == 0)
+		else if (is_reverse(inst))
 			rra_rrb(stack_a, stack_b, inst);
 		else
-			ft_printf("Error: instruction '%s' does not exist.", inst);	
+			ft_printf("Error: instruction '%s' does not exist.", inst);
 		num--;
 	}
 }
 
+void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
+{
+	va_list	args;
+	char	*inst;
+
+	va_start(args, stack_b);
+	while (num > 0)
+	{	
+		inst = va_arg(args, char *);
+		if (is_swap(inst))
+			sa_sb(stack_a, stack_b, inst);
+		else if (is_push(inst))
+			pa_pb(stack_a, stack_b, inst);
+		else if (is_rotate(inst))
+			ra_rb(stack_a, stack_b, inst);
+		else if (is_reverse(inst))
+			rra_rrb(stack_a, stack_b, inst);
+		else
+			ft_printf("Error: instruction '%s' does not exist.", inst);
+		num--;
+	}
+}
 
 void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst)
 {
@@ -134,5 +136,3 @@ void	rra_rrb(t_list *stack_a, t_list *stack_b, char *inst)
 	}
 	ft_printf("%s\n", inst);
 }
-
-

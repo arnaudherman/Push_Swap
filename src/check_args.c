@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/09 22:12:37 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:22:05 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@ int	check_sort(t_list *stack)
 	t_element	*current;
 	int			is_sorted;
 
-	is_sorted = 0;
+	is_sorted = 1;
 	current = stack->first;
 	while (current)
 	{
 		if (current->nxt)
 		{
 			if (current->val > current->nxt->val)
-				is_sorted = 1;
+				is_sorted = 0;
 		}
 		current = current->nxt;
 	}
-	if (is_sorted != 0)
-		return (is_sorted);
 	return (is_sorted);
 }
 
@@ -58,7 +56,7 @@ int	find_occurrences(char **array)
 
 void	push_atoi(t_list *stack, char **array)
 {
-	int	c1;
+	size_t	c1;
 
 	c1 = 1;
 	while (array[c1])
