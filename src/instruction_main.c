@@ -6,11 +6,30 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:21 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/16 11:36:10 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+void	select_sort(char *inst, int size, t_list *stack_a, t_list *stack_b)
+{
+	if (ft_strcmp(inst, "pb") == 0)
+	{
+		size--;
+		if (size == 3)
+		{
+			sort_three(stack_a, stack_b);
+			pa_pb(stack_a, stack_b, "pa");
+		}
+		else if (size == 4)
+		{
+			sort_four(stack_a, stack_b);
+			pa_pb(stack_a, stack_b, "pa");
+			sa_sb(stack_a, stack_b, "sa");
+		}
+	}
+}
 
 void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 {
@@ -36,29 +55,6 @@ void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 			rra_rrb(stack_a, stack_b, inst);
 		if (check_sort(stack_a))
 			return ;
-		num--;
-	}
-}
-
-void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
-{
-	va_list	args;
-	char	*inst;
-
-	va_start(args, stack_b);
-	while (num > 0)
-	{	
-		inst = va_arg(args, char *);
-		if (is_swap(inst))
-			sa_sb(stack_a, stack_b, inst);
-		else if (is_push(inst))
-			pa_pb(stack_a, stack_b, inst);
-		else if (is_rotate(inst))
-			ra_rb(stack_a, stack_b, inst);
-		else if (is_reverse(inst))
-			rra_rrb(stack_a, stack_b, inst);
-		else
-			ft_printf("Error: instruction '%s' does not exist.", inst);
 		num--;
 	}
 }

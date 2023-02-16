@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:27 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/16 12:46:56 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,26 @@ void	stacking(t_list *stack, int new_val)
 	new_element->nxt = NULL;
 	if (stack->first != NULL)
 	{
-		if (stack->last == NULL)
-		{
-			stack->first->nxt = new_element;
-			stack->last = new_element;
-			new_element->prev = stack->first;
-		}
 		stack->last->nxt = new_element;
 		stack->last = new_element;
 	}
 	else
+	{
 		stack->first = new_element;
+		stack->last = new_element;
+	}
 }
 
-int	get_positionition(t_list *stack)
+void	get_position(t_list *stack)
 {
 	t_element	*current;
 	t_element	*comp;
-	int			comb;
 
-	comb = 0;
 	current = stack->first;
 	while (current)
 	{
-		if (current->position)
-			current->position = 0;
+		if (current->pos)
+			current->pos = 0;
 		current = current->nxt;
 	}
 	current = stack->first;
@@ -78,14 +73,12 @@ int	get_positionition(t_list *stack)
 		while (comp)
 		{
 			if (current->val > comp->val)
-				current->position--;
+				current->pos--;
 			comp = comp->nxt;
 		}
-		current->position += current->position * -2 + 1;
-		comb = comb * 10 + current->position;
+		current->pos += current->pos * -2 + 1;
 		current = current->nxt;
 	}
-	return (comb);
 }
 
 int	stack_size(t_list *stack)

@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:24 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/16 12:48:40 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	ft_swap(t_list *stack)
 {
 	t_element	*temp;
 	int			val_temp;
-	int			position_temp;
+	int			pos_temp;
 
 	temp = stack->first;
 	val_temp = temp->val;
-	position_temp = temp->position;
+	pos_temp = temp->pos;
 	temp->val = temp->nxt->val;
-	temp->position = temp->nxt->position;
+	temp->pos = temp->nxt->pos;
 	temp = temp->nxt;
 	temp->val = val_temp;
-	temp->position = position_temp;
+	temp->pos = pos_temp;
 }
 
 void	ft_push(t_list *dst, t_list *src)
