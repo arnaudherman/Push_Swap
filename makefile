@@ -6,7 +6,7 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/16 12:09:04 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/16 14:49:28 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CFLAGS = -Wall -Wextra -Werror -I.
 OBJS = $(SRCS:.c=.o)
 
 
-all: ${NAME} ${CHECK}
+all: ${NAME} ${CHECK} ${OBJS}
 ${NAME}: ${OBJS}
 	@${MAKE} -C ./ft_printf
 	@${CC} ${CFLAGS} ${OBJS} ./ft_printf/ft_printf.a -o ${NAME}

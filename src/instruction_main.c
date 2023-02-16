@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/16 11:36:10 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:06:29 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,27 @@ void	rra_rrb(t_list *stack_a, t_list *stack_b, char *inst)
 		ft_reverse(stack_b);
 	}
 	ft_printf("%s\n", inst);
+}
+
+int	is_swap(char *inst)
+{
+	return (ft_strcmp(inst, SA) == 0 || ft_strcmp(inst, SB) == 0
+		|| ft_strcmp(inst, SS) == 0);
+}
+
+int	is_push(char *inst)
+{
+	return (ft_strcmp(inst, PA) == 0 || ft_strcmp(inst, PB) == 0);
+}
+
+int	is_rotate(char *inst)
+{
+	return (ft_strcmp(inst, RA) == 0 || ft_strcmp(inst, RB) == 0
+		|| ft_strcmp(inst, RR) == 0);
+}
+
+int	is_reverse(char *inst)
+{
+	return (ft_strcmp(inst, RRA) == 0 || ft_strcmp(inst, RRB) == 0
+		|| ft_strcmp(inst, RRR) == 0);
 }
