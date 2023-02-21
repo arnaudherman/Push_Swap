@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:34:44 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/16 11:35:06 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/21 12:07:49 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,32 @@ void	rotate_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
 {
 	if (ops < 0)
 	{
-		while (ops < 0)
-		{
+		while (ops++ < 0)
 			rra_rrb(stack_a, stack_b, ft_strjoin("rr", stack_name));
-			ops++;
-		}
 	}
 	else if (ops > 0)
 	{
-		while (ops > 0)
-		{
+		while (ops-- > 0)
 			ra_rb(stack_a, stack_b, ft_strjoin("r", stack_name));
-			ops--;
-		}
 	}
+}
+
+void	pa_sorting(t_list *stack_a, t_list *stack_b)
+{
+	t_best_ops	c;
+
+	while (stack_size(stack_b) > 0)
+	{
+		c.closest_pos = get_closest(stack_b->first, stack_a);
+		c.ops_a = count_op(stack_a, c.closest_pos);
+		rotate_ops(stack_a, stack_b, c.ops_a, "a");
+		if (stack_b->first->pos < c.closest_pos)
+			pa_pb(stack_a, stack_b, PA);
+		else
+			instructions(2, stack_a, stack_b, RA, PA);
+	}
+	c.ops_a = count_op(stack_a, 1);
+	rotate_ops(stack_a, stack_b, c.ops_a, "a");
 }
 
 void	big_sort(t_list *stack_a, t_list *stack_b)

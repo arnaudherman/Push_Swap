@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/16 12:10:40 by aherman          ###   ########.fr       */
+/*   Updated: 2023/02/21 12:12:05 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,22 @@ int	check_sort(t_list *stack)
 	return (is_sorted);
 }
 
-int	find_occurrences(char **array)
+int	find_occurrences(t_list *stack)
 {
-	int	i;
-	int	j;
+	t_element	*current;
+	t_element	*comp;
 
-	i = 0;
-	while (array[i])
+	current = stack->first;
+	while (current)
 	{
-		j = i + 1;
-		while (array[j])
+		comp = current->nxt;
+		while (comp)
 		{
-			if (!ft_strcmp(array[i], array[j]))
-			{
-				ft_printf("Error\n");
-				exit (1);
-			}
-			j++;
+			if (current->pos == comp->pos)
+				return (1);
+			comp = comp->nxt;
 		}
-		i++;
+		current = current->nxt;
 	}
 	return (0);
 }

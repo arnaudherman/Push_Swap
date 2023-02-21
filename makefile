@@ -6,7 +6,7 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/16 14:49:28 by aherman          ###   ########.fr        #
+#    Updated: 2023/02/21 11:49:43 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS := src/push_swap.c\
 		src/check_split.c\
 		src/instruction_main.c\
 		src/instruction_utils.c\
-		src/instruction_utils_second.c\
 		src/sort_big.c\
 		src/sort_five.c\
 		src/sort_for.c\
