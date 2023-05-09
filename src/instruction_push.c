@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/08 15:10:37 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 12:03:13 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-
-int	is_push(char *inst)
-{
-	return (ft_strcmp(inst, PA) == 0 || ft_strcmp(inst, PB) == 0);
-}
 
 void	push(t_list *dest, t_list *src)
 {

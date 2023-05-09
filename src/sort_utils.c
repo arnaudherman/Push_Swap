@@ -5,109 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/08 15:11:23 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/13 12:59:31 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 11:19:58 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-void	put_index(t_list *stack)
+void	stacking(t_list *stack, int new_val)
 {
-	t_element	*current;
-	int			index;
+	t_element	*new_element;
 
-	index = 0;
-	current = stack->first;
-	while (current)
+	new_element = malloc(sizeof(t_element));
+	if (!new_element || !stack)
+		exit(EXIT_FAILURE);
+	new_element->val = new_val;
+	new_element->prev = stack->last;
+	new_element->nxt = NULL;
+	if (stack->first != NULL)
 	{
-		current->index = index;
-		current = current->nxt;
-		index++;
+		stack->last->nxt = new_element;
+		stack->last = new_element;
+	}
+	else
+	{
+		stack->first = new_element;
+		stack->last = new_element;
 	}
 }
 
-int	get_index(t_list *stack, int pos)
+int	stack_size(t_list *stack)
 {
 	t_element	*current;
+	int			size;
 
-	put_index(stack);
+	size = 0;
 	current = stack->first;
 	while (current)
 	{
-		if (current->pos == pos)
+		current = current->nxt;
+		size++;
+	}
+	return (size);
+}
+
+void	printlist(t_list *stack)
+{
+	t_element	*current;
+
+	if (!stack)
+	{
+		ft_printf("NOP!");
+		exit(EXIT_FAILURE);
+	}
+	if (!stack->first)
+		ft_printf("(empty stack)\n");
+	current = stack->first;
+	while (current != NULL)
+	{
+		ft_printf("%d\t", current->val);
+		printf("%d\n", current->pos);
+		current = current->nxt;
+	}
+	ft_printf("----------\n");
+}
+
+int	check_sort(t_list *stack)
+{
+	t_element	*current;
+	int			is_sorted;
+
+	is_sorted = 1;
+	current = stack->first;
+	while (current)
+	{
+		if (current->nxt)
 		{
-			break ;
+			if (current->val > current->nxt->val)
+				is_sorted = 0;
 		}
 		current = current->nxt;
 	}
-	return (current->index);
-}
-
-void	get_position(t_list *stack)
-{
-	t_element	*current;
-	t_element	*comp;
-
-	current = stack->first;
-	while (current)
-	{
-		if (current->pos)
-			current->pos = 0;
-		current = current->nxt;
-	}
-	current = stack->first;
-	while (current)
-	{
-		comp = stack->first;
-		while (comp)
-		{
-			if (current->val > comp->val)
-				current->pos--;
-			comp = comp->nxt;
-		}
-		current->pos += current->pos * -2 + 1;
-		current = current->nxt;
-	}
-}
-
-int	*save_inarray(t_list *stack)
-{
-	t_element	*current;
-	int			*array;
-	int			i;
-
-	current = stack->first;
-	i = 0;
-	array = malloc(sizeof(int) * stack_size(stack));
-	if (!array)
-		return (0);
-	while (current)
-	{
-		array[i++] = current->pos;
-		current = current->nxt;
-	}
-	return (array);
-}
-
-int	get_permutation(t_list *stack)
-{
-	t_element	*current;
-	int			*array;
-	int			comb;
-	int			i;
-
-	current = stack->first;
-	comb = 0;
-	i = 0;
-	array = save_inarray(stack);
-	get_position(stack);
-	while (current)
-	{
-		comb = comb * 10 + current->pos;
-		current->pos = array[i++];
-		current = current->nxt;
-	}
-	free(array);
-	return (comb);
+	return (is_sorted);
 }

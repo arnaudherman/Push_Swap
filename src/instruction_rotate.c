@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/08 15:10:45 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 12:32:28 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ int	rrr_ops(int ops_a, int ops_b)
 		}
 	}
 	return (ops_ab);
-}
-
-int	is_rotate(char *inst)
-{
-	return (ft_strcmp(inst, RA) == 0 || ft_strcmp(inst, RB) == 0
-		|| ft_strcmp(inst, RR) == 0);
-}
-
-int	is_reverse(char *inst)
-{
-	return (ft_strcmp(inst, RRA) == 0 || ft_strcmp(inst, RRB) == 0
-		|| ft_strcmp(inst, RRR) == 0);
 }
 
 void	rotate(t_list *stack)

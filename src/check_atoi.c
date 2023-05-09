@@ -1,53 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   check_atoi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:13:07 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 12:31:46 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-void	error(void)
+int	pushatoi(t_list *stack, char **array)
 {
-	write(2, "Error\n", 6);
-}
-
-void	free_array(char **array)
-{
-	int	i;
+	size_t	i;
+	long	val;
 
 	i = 0;
+	val = 0;
 	while (array[i])
 	{
-		free(array[i]);
+		val = ft_atol(array[i]);
+		// if (val > INT_MAX || val < INT_MIN || !is_all_digits(array[i]))
+		if (!is_all_digits(array[i]))
+			return (1);
+		stacking(stack, (int)val);
 		i++;
 	}
-}
-
-void	free_all(t_list *stack_a)
-{
-	if (stack_a->first)
-		free_stack(stack_a);
-	free(stack_a);
-}
-
-void	free_stack(t_list *stack_a)
-{
-	t_element	*current;
-	t_element	*next;
-
-	current = stack_a->first;
-	while (current)
-	{
-		next = current->nxt;
-		free(current);
-		current = next;
-	}
-	stack_a->first = NULL;
-	stack_a->last = NULL;
+	return (0);
 }

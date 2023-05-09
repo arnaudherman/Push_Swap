@@ -1,53 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   instruction_dispatch.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:13:07 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/12 19:18:57 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 12:00:22 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-void	error(void)
+int	is_swap(char *inst)
 {
-	write(2, "Error\n", 6);
+	return (ft_strcmp(inst, SA) == 0 || ft_strcmp(inst, SB) == 0
+		|| ft_strcmp(inst, SS) == 0);
 }
 
-void	free_array(char **array)
+int	is_push(char *inst)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
+	return (ft_strcmp(inst, PA) == 0 || ft_strcmp(inst, PB) == 0);
 }
 
-void	free_all(t_list *stack_a)
+int	is_rotate(char *inst)
 {
-	if (stack_a->first)
-		free_stack(stack_a);
-	free(stack_a);
+	return (ft_strcmp(inst, RA) == 0 || ft_strcmp(inst, RB) == 0
+		|| ft_strcmp(inst, RR) == 0);
 }
 
-void	free_stack(t_list *stack_a)
+int	is_reverse(char *inst)
 {
-	t_element	*current;
-	t_element	*next;
-
-	current = stack_a->first;
-	while (current)
-	{
-		next = current->nxt;
-		free(current);
-		current = next;
-	}
-	stack_a->first = NULL;
-	stack_a->last = NULL;
+	return (ft_strcmp(inst, RRA) == 0 || ft_strcmp(inst, RRB) == 0
+		|| ft_strcmp(inst, RRR) == 0);
 }

@@ -5,18 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/08 15:10:50 by aherman          ###   ########.fr       */
+/*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/09 12:03:29 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-
-int	is_swap(char *inst)
-{
-	return (ft_strcmp(inst, SA) == 0 || ft_strcmp(inst, SB) == 0
-		|| ft_strcmp(inst, SS) == 0);
-}
 
 void	swap(t_list *stack)
 {
