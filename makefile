@@ -6,28 +6,27 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/02/21 11:49:43 by aherman          ###   ########.fr        #
+#    Updated: 2023/05/08 15:25:30 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRCS := src/push_swap.c\
-		src/push_swap_utils.c\
-		src/check_args.c\
-		src/check_atoi.c\
-		src/list_utils.c\
-		src/check_split.c\
-		src/instruction_main.c\
-		src/instruction_utils.c\
-		src/sort_big.c\
-		src/sort_five.c\
-		src/sort_for.c\
-		src/sort_three.c\
-		src/sort_main.c\
+		src/check_utils.c\
+		src/free_utils.c\
+		src/instruction_push.c\
+		src/instruction_reverse.c\
+		src/instruction_rotate.c\
+		src/instruction_swap.c\
+		src/instructions.c\
+		src/operations_opti.c\
+		src/sort_bigstack.c\
+		src/sort_smallstack.c\
 		src/sort_utils.c\
-		src/sort_big_opti.c\
-		src/sort_big_utils.c\
+		src/stack_utils.c\
+		src/libft_split.c\
+		src/libft.c\
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I.

@@ -1,30 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_five.c                                        :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:59:18 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/14 16:44:40 by aherman          ###   ########.fr       */
+/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/08 15:10:33 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-void	sort_five(t_list *stack_a, t_list *stack_b)
+void	free_array(char **array)
 {
 	int	i;
 
-	i = get_index(stack_a, 2);
-	if (i == 0)
-		instructionsf(1, stack_a, stack_b, PB);
-	if (i == 1)
-		instructionsf(2, stack_a, stack_b, SA, PB);
-	if (i == 2)
-		instructionsf(3, stack_a, stack_b, RA, RA, PB);
-	if (i == 3)
-		instructionsf(3, stack_a, stack_b, RRA, RRA, PB);
-	if (i == 4)
-		instructionsf(2, stack_a, stack_b, RRA, PB);
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+}
+
+void	free_all(t_list *stack_a)
+{
+	if (stack_a->first)
+		free_stack(stack_a);
+	free(stack_a);
+}
+
+void	free_stack(t_list *stack_a)
+{
+	t_element	*current;
+	t_element	*next;
+
+	current = stack_a->first;
+	while (current)
+	{
+		next = current->nxt;
+		free(current);
+		current = next;
+	}
+	stack_a->first = NULL;
+	stack_a->last = NULL;
 }

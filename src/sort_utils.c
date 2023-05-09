@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:59:31 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/21 11:50:29 by aherman          ###   ########.fr       */
+/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/08 15:11:23 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,70 @@ int	get_index(t_list *stack, int pos)
 	return (current->index);
 }
 
-int	get_permutation(t_list *stack)
-{	
+void	get_position(t_list *stack)
+{
 	t_element	*current;
-	int			comb;
+	t_element	*comp;
+
+	current = stack->first;
+	while (current)
+	{
+		if (current->pos)
+			current->pos = 0;
+		current = current->nxt;
+	}
+	current = stack->first;
+	while (current)
+	{
+		comp = stack->first;
+		while (comp)
+		{
+			if (current->val > comp->val)
+				current->pos--;
+			comp = comp->nxt;
+		}
+		current->pos += current->pos * -2 + 1;
+		current = current->nxt;
+	}
+}
+
+int	*save_inarray(t_list *stack)
+{
+	t_element	*current;
 	int			*array;
 	int			i;
 
-	array = malloc(sizeof(int) * stack_size(stack));
 	current = stack->first;
 	i = 0;
+	array = malloc(sizeof(int) * stack_size(stack));
+	if (!array)
+		return (0);
 	while (current)
 	{
 		array[i++] = current->pos;
 		current = current->nxt;
 	}
-	get_position(stack);
+	return (array);
+}
+
+int	get_permutation(t_list *stack)
+{
+	t_element	*current;
+	int			*array;
+	int			comb;
+	int			i;
+
 	current = stack->first;
 	comb = 0;
 	i = 0;
+	array = save_inarray(stack);
+	get_position(stack);
 	while (current)
 	{
 		comb = comb * 10 + current->pos;
-		current->pos = array[i];
+		current->pos = array[i++];
 		current = current->nxt;
-		i++;
 	}
+	free(array);
 	return (comb);
 }

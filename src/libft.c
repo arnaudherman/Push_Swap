@@ -1,16 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:19:41 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/21 11:49:50 by aherman          ###   ########.fr       */
+/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/08 15:27:54 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+long	ft_atol(char *str)
+{
+	long	i[3];
+
+	i[0] = 0;
+	i[1] = 1;
+	i[2] = 0;
+	while (ft_iswhitespace(str[i[0]]))
+		i[0]++;
+	if (str[i[0]] == '-' || str[i[0]] == '+')
+	{
+		if (str[i[0]++] == '-')
+			i[1] = -1;
+	}
+	while (str[i[0]] && ft_isdigit(str[i[0]]))
+		i[2] = i[2] * 10 + str[i[0]++] - '0';
+	return (i[2] * i[1]);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c < 48 || c > 57)
+		return (0);
+	return (1);
+}
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -29,25 +55,10 @@ int	ft_abs(int n)
 	return (n);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_iswhitespace(char c)
 {
-	char	*new_s;
-	size_t	len;
-	size_t	i;
-
-	if (!s1 || !s2)
-		return (0);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	new_s = (char *)malloc((len + 1) * sizeof(char));
-	if (!new_s)
-		return (0);
-	len = ft_strlen(s1);
-	i = -1;
-	while (s1[++i])
-		new_s[i] = s1[i];
-	i = -1;
-	while (s2[++i])
-		new_s[len + i] = s2[i];
-	new_s[len + i] = 0;
-	return (new_s);
+	if (c == '\t' || c == '\v' || c == '\n' || c == '\r'
+		|| c == '\f' || c == ' ')
+		return (1);
+	return (0);
 }

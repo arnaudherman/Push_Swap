@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils.c                                       :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/16 12:46:56 by aherman          ###   ########.fr       */
+/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/08 15:11:25 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-
-t_list	*list_init(t_list *stack, int value)
-{
-	t_element	*element;
-
-	element = malloc(sizeof(t_element));
-	if (!stack || !element)
-	{
-		if (stack == NULL)
-			free(element);
-		if (element == NULL)
-			free(stack);
-		exit (EXIT_FAILURE);
-	}
-	element->val = value;
-	element->nxt = NULL;
-	element->prev = NULL;
-	stack->first = element;
-	return (stack);
-}
 
 void	stacking(t_list *stack, int new_val)
 {
@@ -54,33 +34,6 @@ void	stacking(t_list *stack, int new_val)
 	}
 }
 
-void	get_position(t_list *stack)
-{
-	t_element	*current;
-	t_element	*comp;
-
-	current = stack->first;
-	while (current)
-	{
-		if (current->pos)
-			current->pos = 0;
-		current = current->nxt;
-	}
-	current = stack->first;
-	while (current)
-	{
-		comp = stack->first;
-		while (comp)
-		{
-			if (current->val > comp->val)
-				current->pos--;
-			comp = comp->nxt;
-		}
-		current->pos += current->pos * -2 + 1;
-		current = current->nxt;
-	}
-}
-
 int	stack_size(t_list *stack)
 {
 	t_element	*current;
@@ -94,4 +47,44 @@ int	stack_size(t_list *stack)
 		size++;
 	}
 	return (size);
+}
+
+void	printlist(t_list *stack)
+{
+	t_element	*current;
+
+	if (!stack)
+	{
+		ft_printf("NOP!");
+		exit(EXIT_FAILURE);
+	}
+	if (!stack->first)
+		ft_printf("(empty stack)\n");
+	current = stack->first;
+	while (current != NULL)
+	{
+		ft_printf("%d\t", current->val);
+		printf("%d\n", current->pos);
+		current = current->nxt;
+	}
+	ft_printf("----------\n");
+}
+
+int	check_sort(t_list *stack)
+{
+	t_element	*current;
+	int			is_sorted;
+
+	is_sorted = 1;
+	current = stack->first;
+	while (current)
+	{
+		if (current->nxt)
+		{
+			if (current->val > current->nxt->val)
+				is_sorted = 0;
+		}
+		current = current->nxt;
+	}
+	return (is_sorted);
 }

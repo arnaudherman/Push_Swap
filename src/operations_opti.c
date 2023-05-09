@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_big_opti.c                                    :+:      :+:    :+:   */
+/*   operations_opti.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 12:05:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/02/21 11:49:56 by aherman          ###   ########.fr       */
+/*   Created: 2023/05/08 15:09:39 by aherman           #+#    #+#             */
+/*   Updated: 2023/05/08 15:10:59 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	get_closest(t_element *element, t_list *stack_b)
 
 	comp_b = stack_b->first;
 	var[0] = comp_b->pos;
-	var[2] = comp_b->pos;
 	var[1] = ft_abs(element->pos - comp_b->pos);
+	var[2] = comp_b->pos;
 	var[3] = 1;
 	comp_b = comp_b->nxt;
 	while (comp_b)
@@ -45,8 +45,6 @@ int	get_closest(t_element *element, t_list *stack_b)
 			var[3] = 0;
 		comp_b = comp_b->nxt;
 	}
-	if (var[0] == 1 && var[0] != var[2] && var[3])
-		var[0] = var[2];
 	return (var[0]);
 }
 
@@ -81,7 +79,7 @@ t_element	*min_ops(t_list *stack_a, t_list *stack_b, int l1, int l2)
 	{
 		put_index(stack_a);
 		if ((current->index >= 0 && current->index <= l1)
-			|| (current->index <= l2 && current->index >= l1 + l2))
+			|| (current->index >= l2))
 		{
 			var[1] = count_op(stack_a, current->pos);
 			var[2] = count_op(stack_b, get_closest(current, stack_b));
@@ -102,15 +100,12 @@ t_best_ops	cheapest_op(t_list *stack_a, t_list *stack_b)
 	t_best_ops	cheap;
 	int			limit[2];
 
-	if (stack_size(stack_a) + stack_size(stack_b) <= 250)
+	limit[0] = 4;
+	limit[1] = stack_size(stack_a) - 4;
+	if (stack_size(stack_a) + stack_size(stack_b) > 100)
 	{
-		limit[0] = 7;
-		limit[1] = limit[0] * 2;
-	}
-	if (stack_size(stack_a) + stack_size(stack_b) > 250)
-	{
-		limit[0] = 13;
-		limit[1] = limit[0] * 2;
+		limit[0] = 8;
+		limit[1] = stack_size(stack_a) - 8;
 	}
 	cheap.best_pos = min_ops(stack_a, stack_b, limit[0], limit[1]);
 	cheap.closest_pos = get_closest(cheap.best_pos, stack_b);
