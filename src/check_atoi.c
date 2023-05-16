@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 13:26:41 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:56:15 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	pushatoi(t_list *stack, char **array)
 	val = 0;
 	while (array[i])
 	{
-		val = ft_atol(array[i]);
+		val = atoi_push_swap(array[i]);
 		if (val > 2147483647 || val < -2147483648 || !is_all_digits(array[i]))
 			return (1);
 		stacking(stack, (int)val);
