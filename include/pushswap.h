@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/16 16:58:27 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/16 23:33:49 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSHSWAP_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "../ft_printf/include/ft_printf.h"
 
 /* Macros */
@@ -119,7 +120,6 @@ int			ft_isdigit(int c);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_abs(int n);
 int			ft_isspace(int a);
-int			atoi_push_swap(char *str);
-
+long		atoi_push_swap(char *str);
 
 #endif

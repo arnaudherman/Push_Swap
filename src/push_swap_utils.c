@@ -6,15 +6,15 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:41 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/16 16:58:20 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/16 23:32:56 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-int	atoi_push_swap(char *str)
+long	atoi_push_swap(char *str)
 {
-	int	all[3];
+	long	all[3];
 
 	all[0] = 0;
 	all[1] = 1;
