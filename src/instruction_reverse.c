@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 12:03:19 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/17 20:40:08 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,25 @@ void	rotrev_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
 		rotate_ops(stack_a, stack_b, ops, stack_name);
 }
 
+// void	reverse(t_list *stack)
+// {
+// 	t_element	*temp;
+
+// 	if (!stack->first || !stack->first->nxt)
+// 		return ;
+// 	temp = stack->last;
+// 	stack->last = stack->last->prev;
+// 	stack->last->nxt = NULL;
+// 	temp->nxt = stack->first;
+// 	temp->prev = NULL;
+// 	stack->first->prev = temp;
+// 	stack->first = temp;
+// }
+//test les leaks
 void	reverse(t_list *stack)
 {
 	t_element	*temp;
 
-	if (!stack->first || !stack->first->nxt)
-		return ;
 	temp = stack->last;
 	stack->last = stack->last->prev;
 	stack->last->nxt = NULL;

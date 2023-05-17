@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 12:32:28 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/17 20:31:20 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,24 @@ int	rrr_ops(int ops_a, int ops_b)
 	return (ops_ab);
 }
 
+// void	rotate(t_list *stack)
+// {
+// 	t_element	*temp;
+
+// 	if (!stack->first && !stack->first->nxt)
+// 		return ;
+// 	temp = stack->first;
+// 	stack->first = stack->first->nxt;
+// 	stack->first->prev = NULL;
+// 	temp->prev = stack->last;
+// 	temp->nxt = NULL;
+// 	stack->last->nxt = temp;
+// 	stack->last = temp;
+// }
 void	rotate(t_list *stack)
 {
 	t_element	*temp;
 
-	if (!stack->first && !stack->first->nxt)
-		return ;
 	temp = stack->first;
 	stack->first = stack->first->nxt;
 	stack->first->prev = NULL;

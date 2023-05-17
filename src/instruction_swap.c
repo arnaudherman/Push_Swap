@@ -6,30 +6,45 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 12:03:29 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/17 20:42:02 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
+// void	swap(t_list *stack)
+// {
+// 	t_element	*temp;
+
+// 	if (!stack->first || !stack->first->nxt)
+// 		return ;
+// 	temp = stack->first;
+// 	stack->first = stack->first->nxt;
+// 	temp->nxt = stack->first->nxt;
+// 	stack->first->prev = NULL;
+// 	if (temp->nxt)
+// 		temp->nxt->prev = temp;
+// 	else
+// 		stack->last = temp;
+// 	stack->first->nxt = temp;
+// 	temp->prev = stack->first;
+// }
+//Good test leaks
 void	swap(t_list *stack)
 {
 	t_element	*temp;
+	int			val_temp;
+	int			pos_temp;
 
-	if (!stack->first || !stack->first->nxt)
-		return ;
 	temp = stack->first;
-	stack->first = stack->first->nxt;
-	temp->nxt = stack->first->nxt;
-	stack->first->prev = NULL;
-	if (temp->nxt)
-		temp->nxt->prev = temp;
-	else
-		stack->last = temp;
-	stack->first->nxt = temp;
-	temp->prev = stack->first;
+	val_temp = temp->val;
+	pos_temp = temp->pos;
+	temp->val = temp->nxt->val;
+	temp->pos = temp->nxt->pos;
+	temp = temp->nxt;
+	temp->val = val_temp;
+	temp->pos = pos_temp;
 }
-
 void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "sa") == 0)
