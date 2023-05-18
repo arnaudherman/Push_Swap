@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/16 23:33:49 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:09:03 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			pushatoi(t_list *stack, char **array);
 int			check_stack(t_list *stack_a, t_list *stack_b);
 int			check_args(char **array, t_list *stack_a, t_list *stack_b);
 int			is_push(char *inst);
-void		push(t_list *dest, t_list *src);
+void		ft_push(t_list *dest, t_list *src);
 void		pa_pb(t_list *stack_a, t_list *stack_b, char *inst);
 void		reverse_ops(t_list *stack_a, t_list *stack_b,
 				int ops, char *stack_name);
@@ -78,15 +78,15 @@ void		rotate_ops(t_list *stack_a, t_list *stack_b,
 				int ops, char *stack_name);
 void		rotrev_ops(t_list *stack_a, t_list *stack_b,
 				int ops, char *stack_name);
-void		reverse(t_list *stack);
+void		ft_reverse(t_list *stack);
 void		rra_rrb(t_list *stack_a, t_list *stack_b, char *inst);
 int			rrr_ops(int ops_a, int ops_b);
 int			is_rotate(char *inst);
 int			is_reverse(char *inst);
-void		rotate(t_list *stack);
+void		ft_rotate(t_list *stack);
 void		ra_rb(t_list *stack_a, t_list *stack_b, char *inst);
 int			is_swap(char *inst);
-void		swap(t_list *stack);
+void		ft_swap(t_list *stack);
 void		sa_sb(t_list *stack_a, t_list *stack_b, char *inst);
 void		select_sort(char *inst, int size, t_list *stack_a, t_list *stack_b);
 void		instructionsf(int num, t_list *stack_a, t_list *stack_b, ...);

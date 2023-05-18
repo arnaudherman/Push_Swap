@@ -6,11 +6,35 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/16 22:10:57 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:10:57 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+long	atoi_push_swap(char *str)
+{
+	long	all[3];
+
+	all[0] = 0;
+	all[1] = 1;
+	all[2] = 0;
+	while (ft_isspace(str[all[0]]))
+		all[0]++;
+	if (str[all[0]] == '-' || str[all[0]] == '+')
+	{
+		if (str[all[0]] == '-')
+			all[1] = all[1] * -1;
+		all[0]++;
+	}
+	if (ft_isdigit(str[all[0]]))
+	{
+		while (str[all[0]] != '\0' && str[all[0]] <= '9' && str[all[0]] >= '0')
+			all[2] = all[2] * 10 + str[all[0]++] - '0';
+		return (all[2] * all[1]);
+	}
+	return (all[2] * all[1]);
+}
 
 int	pushatoi(t_list *stack, char **array)
 {

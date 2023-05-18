@@ -6,11 +6,30 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/17 20:31:20 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:12:16 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+void	rotate_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
+{
+	if (ft_strcmp(stack_name, "a") == 0)
+	{
+		while (ops-- > 0)
+			ra_rb(stack_a, stack_b, "ra");
+	}
+	else if (ft_strcmp(stack_name, "b") == 0)
+	{
+		while (ops-- > 0)
+			ra_rb(stack_a, stack_b, "rb");
+	}
+	else
+	{
+		while (ops-- > 0)
+			ra_rb(stack_a, stack_b, "rr");
+	}
+}
 
 int	rrr_ops(int ops_a, int ops_b)
 {
@@ -35,21 +54,7 @@ int	rrr_ops(int ops_a, int ops_b)
 	return (ops_ab);
 }
 
-// void	rotate(t_list *stack)
-// {
-// 	t_element	*temp;
-
-// 	if (!stack->first && !stack->first->nxt)
-// 		return ;
-// 	temp = stack->first;
-// 	stack->first = stack->first->nxt;
-// 	stack->first->prev = NULL;
-// 	temp->prev = stack->last;
-// 	temp->nxt = NULL;
-// 	stack->last->nxt = temp;
-// 	stack->last = temp;
-// }
-void	rotate(t_list *stack)
+void	ft_rotate(t_list *stack)
 {
 	t_element	*temp;
 
@@ -65,13 +70,13 @@ void	rotate(t_list *stack)
 void	ra_rb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "ra") == 0)
-		rotate(stack_a);
+		ft_rotate(stack_a);
 	else if (ft_strcmp(inst, "rb") == 0)
-		rotate(stack_b);
+		ft_rotate(stack_b);
 	else if (ft_strcmp(inst, "rr") == 0)
 	{
-		rotate(stack_a);
-		rotate(stack_b);
+		ft_rotate(stack_a);
+		ft_rotate(stack_b);
 	}
 	ft_printf("%s\n", inst);
 }

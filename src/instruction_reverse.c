@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/17 20:40:08 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/18 22:11:34 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,6 @@ void	reverse_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
 	}
 }
 
-void	rotate_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
-{
-	if (ft_strcmp(stack_name, "a") == 0)
-	{
-		while (ops-- > 0)
-			ra_rb(stack_a, stack_b, "ra");
-	}
-	else if (ft_strcmp(stack_name, "b") == 0)
-	{
-		while (ops-- > 0)
-			ra_rb(stack_a, stack_b, "rb");
-	}
-	else
-	{
-		while (ops-- > 0)
-			ra_rb(stack_a, stack_b, "rr");
-	}
-}
-
 void	rotrev_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
 {
 	if (ops < 0)
@@ -58,22 +39,7 @@ void	rotrev_ops(t_list *stack_a, t_list *stack_b, int ops, char *stack_name)
 		rotate_ops(stack_a, stack_b, ops, stack_name);
 }
 
-// void	reverse(t_list *stack)
-// {
-// 	t_element	*temp;
-
-// 	if (!stack->first || !stack->first->nxt)
-// 		return ;
-// 	temp = stack->last;
-// 	stack->last = stack->last->prev;
-// 	stack->last->nxt = NULL;
-// 	temp->nxt = stack->first;
-// 	temp->prev = NULL;
-// 	stack->first->prev = temp;
-// 	stack->first = temp;
-// }
-//test les leaks
-void	reverse(t_list *stack)
+void	ft_reverse(t_list *stack)
 {
 	t_element	*temp;
 
@@ -89,13 +55,13 @@ void	reverse(t_list *stack)
 void	rra_rrb(t_list *stack_a, t_list *stack_b, char *inst)
 {
 	if (ft_strcmp(inst, "rra") == 0)
-		reverse(stack_a);
+		ft_reverse(stack_a);
 	else if (ft_strcmp(inst, "rrb") == 0)
-		reverse(stack_b);
+		ft_reverse(stack_b);
 	else if (ft_strcmp(inst, "rrr") == 0)
 	{
-		reverse(stack_a);
-		reverse(stack_b);
+		ft_reverse(stack_a);
+		ft_reverse(stack_b);
 	}
 	ft_printf("%s\n", inst);
 }
