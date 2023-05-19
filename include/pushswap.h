@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/18 22:09:03 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:42:23 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int			check_sort(t_list *stack);
 char		**ft_split(char const *s, char c);
 int			ft_isdigit(int c);
 int			ft_strcmp(char *s1, char *s2);
-int			ft_abs(int n);
+int			ft_ntp(int n);
 int			ft_isspace(int a);
 long		atoi_push_swap(char *str);
 

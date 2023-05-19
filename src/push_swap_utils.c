@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:41 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/18 22:10:46 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:42:25 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int	ft_abs(int n)
+int	ft_ntp(int n)
 {
 	if (n < 0)
 		n *= -1;

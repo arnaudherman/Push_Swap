@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:15 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:19:00 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:42:24 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	total_ops(int ops_a, int ops_b)
 	int	total_ops;
 
 	total_ops = 0;
-	ops_a = ft_abs(ops_a);
-	ops_b = ft_abs(ops_b);
+	ops_a = ft_ntp(ops_a);
+	ops_b = ft_ntp(ops_b);
 	if (ops_a == ops_b)
 		total_ops = (ops_b + ops_a) / 2;
 	else if (ops_a > ops_b)

@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:55:47 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:47:32 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
 			ra_rb(stack_a, stack_b, inst);
 		else if (is_reverse(inst))
 			rra_rrb(stack_a, stack_b, inst);
-		else
-			ft_printf("Error: instruction '%s' does not exist.", inst);
 		num--;
 	}
 }

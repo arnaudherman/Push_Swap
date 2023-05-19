@@ -6,11 +6,30 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/18 22:10:57 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:28:15 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+int	is_all_digits(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]) || str[i] == '-'
+			|| str[i] == '+' || str[i] == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 long	atoi_push_swap(char *str)
 {

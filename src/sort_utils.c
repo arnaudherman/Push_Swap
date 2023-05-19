@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:31 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/18 21:41:42 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:35:09 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,4 @@ int	stack_size(t_list *stack)
 		size++;
 	}
 	return (size);
-}
-
-int	check_sort(t_list *stack)
-{
-	t_element	*current;
-	int			is_sorted;
-
-	is_sorted = 1;
-	current = stack->first;
-	while (current)
-	{
-		if (current->nxt)
-		{
-			if (current->val > current->nxt->val)
-				is_sorted = 0;
-		}
-		current = current->nxt;
-	}
-	return (is_sorted);
 }

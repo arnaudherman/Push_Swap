@@ -6,29 +6,29 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 22:04:54 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 12:30:30 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:29:42 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-int	is_all_digits(const char *str)
+int	check_sort(t_list *stack)
 {
-	int	i;
+	t_element	*current;
+	int			is_sorted;
 
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (!str[i])
-		return (0);
-	while (str[i])
+	is_sorted = 1;
+	current = stack->first;
+	while (current)
 	{
-		if (!ft_isdigit(str[i]) || str[i] == '-'
-			|| str[i] == '+' || str[i] == 0)
-			return (0);
-		i++;
+		if (current->nxt)
+		{
+			if (current->val > current->nxt->val)
+				is_sorted = 0;
+		}
+		current = current->nxt;
 	}
-	return (1);
+	return (is_sorted);
 }
 
 int	find_occurrences(t_list *stack)

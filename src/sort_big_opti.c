@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:05:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:19:39 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:42:24 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int	get_closest(t_element *element, t_list *stack_b)
 
 	comp_b = stack_b->first;
 	var[0] = comp_b->pos;
-	var[1] = ft_abs(element->pos - comp_b->pos);
+	var[1] = ft_ntp(element->pos - comp_b->pos);
 	var[2] = comp_b->pos;
 	var[3] = 1;
 	comp_b = comp_b->nxt;
 	while (comp_b)
 	{
-		if (ft_abs(element->pos - comp_b->pos) <= var[1])
+		if (ft_ntp(element->pos - comp_b->pos) <= var[1])
 		{
-			var[1] = ft_abs(element->pos - comp_b->pos);
+			var[1] = ft_ntp(element->pos - comp_b->pos);
 			var[0] = comp_b->pos;
 		}
 		if (comp_b->pos > var[2])
