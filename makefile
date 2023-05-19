@@ -6,7 +6,7 @@
 #    By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 19:24:21 by aherman           #+#    #+#              #
-#    Updated: 2023/05/18 12:50:34 by aherman          ###   ########.fr        #
+#    Updated: 2023/05/19 13:19:32 by aherman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRCS := src/push_swap.c\
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I. 
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 OBJS = $(SRCS:.c=.o)
 
 
