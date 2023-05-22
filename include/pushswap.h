@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 19:28:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/19 10:42:23 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:26:30 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,11 @@
 # include <limits.h>
 # include "../ft_printf/include/ft_printf.h"
 
-/* Macros */
-# define SA "sa"
-# define SB "sb"
-# define SS "ss"
-# define PA "pa"
-# define PB "pb"
-# define RA "ra"
-# define RB "rb"
-# define RR "rr"
-# define RRA "rra"
-# define RRB "rrb"
-# define RRR "rrr"
-
-/* Structures */
 typedef struct s_element	t_element;
 struct s_element
 {
-	int			val;
-	int			pos;
+	int			value;
+	int			position;
 	int			index;
 	t_element	*prev;
 	t_element	*nxt;
@@ -47,15 +33,15 @@ typedef struct s_list
 	t_element	*last;
 }	t_list;
 
-typedef struct s_instructions
+typedef struct s_instruction
 {
 	char	*instruction;
-}	t_instructions;
+}	t_instruction;
 
 typedef struct s_best_ops
 {
 	t_element	*best_pos;
-	int			closest_pos;
+	int			close_pos;
 	int			ops_a;
 	int			ops_b;
 	int			ops_ab;
@@ -89,8 +75,8 @@ int			is_swap(char *inst);
 void		ft_swap(t_list *stack);
 void		sa_sb(t_list *stack_a, t_list *stack_b, char *inst);
 void		select_sort(char *inst, int size, t_list *stack_a, t_list *stack_b);
-void		instructionsf(int num, t_list *stack_a, t_list *stack_b, ...);
-void		instructions(int num, t_list *stack_a, t_list *stack_b, ...);
+void		instructionf(int num, t_list *stack_a, t_list *stack_b, ...);
+void		instruction(int num, t_list *stack_a, t_list *stack_b, ...);
 void		error(void);
 int			get_closest(t_element *element, t_list *stack_b);
 int			count_op(t_list *stack, int position);
@@ -107,13 +93,12 @@ int			second_smallest(t_list *stack);
 void		sort_five(t_list *stack_a, t_list *stack_b);
 void		small_sort(t_list *stack_a, t_list *stack_b, int size);
 void		put_index(t_list *stack);
-int			get_index(t_list *stack, int pos);
+int			get_index(t_list *stack, int position);
 void		get_position(t_list *stack);
 int			*save_inarray(t_list *stack);
 int			get_permutation(t_list *stack);
 void		stacking(t_list *stack, int new_val);
 int			stack_size(t_list *stack);
-void		printlist(t_list *stack);
 int			check_sort(t_list *stack);
 char		**ft_split(char const *s, char c);
 int			ft_isdigit(int c);

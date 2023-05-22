@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/18 22:05:47 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:15:36 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_swap(t_list *stack)
 	int			pos_temp;
 
 	temp = stack->first;
-	val_temp = temp->val;
-	pos_temp = temp->pos;
-	temp->val = temp->nxt->val;
-	temp->pos = temp->nxt->pos;
+	val_temp = temp->value;
+	pos_temp = temp->position;
+	temp->value = temp->nxt->value;
+	temp->position = temp->nxt->position;
 	temp = temp->nxt;
-	temp->val = val_temp;
-	temp->pos = pos_temp;
+	temp->value = val_temp;
+	temp->position = pos_temp;
 }
 
 void	sa_sb(t_list *stack_a, t_list *stack_b, char *inst)

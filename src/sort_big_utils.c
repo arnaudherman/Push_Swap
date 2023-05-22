@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:34:44 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:19:36 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:14:54 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_index(t_list *stack)
 	}
 }
 
-int	get_index(t_list *stack, int pos)
+int	get_index(t_list *stack, int position)
 {
 	t_element	*current;
 
@@ -35,7 +35,7 @@ int	get_index(t_list *stack, int pos)
 	current = stack->first;
 	while (current)
 	{
-		if (current->pos == pos)
+		if (current->position == position)
 		{
 			break ;
 		}
@@ -52,8 +52,8 @@ void	get_position(t_list *stack)
 	current = stack->first;
 	while (current)
 	{
-		if (current->pos)
-			current->pos = 0;
+		if (current->position)
+			current->position = 0;
 		current = current->nxt;
 	}
 	current = stack->first;
@@ -62,11 +62,11 @@ void	get_position(t_list *stack)
 		comp = stack->first;
 		while (comp)
 		{
-			if (current->val > comp->val)
-				current->pos--;
+			if (current->value > comp->value)
+				current->position--;
 			comp = comp->nxt;
 		}
-		current->pos += current->pos * -2 + 1;
+		current->position += current->position * -2 + 1;
 		current = current->nxt;
 	}
 }
@@ -84,7 +84,7 @@ int	*save_inarray(t_list *stack)
 		return (0);
 	while (current)
 	{
-		array[i++] = current->pos;
+		array[i++] = current->position;
 		current = current->nxt;
 	}
 	return (array);
@@ -104,8 +104,8 @@ int	get_permutation(t_list *stack)
 	get_position(stack);
 	while (current)
 	{
-		comb = comb * 10 + current->pos;
-		current->pos = array[i++];
+		comb = comb * 10 + current->position;
+		current->position = array[i++];
 		current = current->nxt;
 	}
 	free(array);

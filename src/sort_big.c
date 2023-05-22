@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:15 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/19 10:42:24 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:25:41 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	pa_sorting(t_list *stack_a, t_list *stack_b)
 
 	while (stack_size(stack_b) > 0)
 	{
-		c.closest_pos = get_closest(stack_b->first, stack_a);
-		c.ops_a = count_op(stack_a, c.closest_pos);
+		c.close_pos = get_closest(stack_b->first, stack_a);
+		c.ops_a = count_op(stack_a, c.close_pos);
 		rotrev_ops(stack_a, stack_b, c.ops_a, "a");
-		if (stack_b->first->pos < c.closest_pos)
-			pa_pb(stack_a, stack_b, PA);
+		if (stack_b->first->position < c.close_pos)
+			pa_pb(stack_a, stack_b, "pa");
 		else
-			instructions(2, stack_a, stack_b, RA, PA);
+			instruction(2, stack_a, stack_b, "ra", "pa");
 	}
 	c.ops_a = count_op(stack_a, 1);
 	rotrev_ops(stack_a, stack_b, c.ops_a, "a");
@@ -50,17 +50,17 @@ void	big_sort(t_list *stack_a, t_list *stack_b)
 {
 	t_best_ops	c;
 
-	instructions(2, stack_a, stack_b, PB, PB);
+	instruction(2, stack_a, stack_b, "pb", "pb");
 	while (stack_size(stack_a) > 3)
 	{
 		c = cheapest_op(stack_a, stack_b);
-		if (c.best_pos->pos < c.closest_pos)
+		if (c.best_pos->position < c.close_pos)
 			c.ops_b++;
 		c.ops_ab = rrr_ops(c.ops_a, c.ops_b);
 		rotrev_ops(stack_a, stack_b, c.ops_ab, "r");
 		rotrev_ops(stack_a, stack_b, c.ops_a - c.ops_ab, "a");
 		rotrev_ops(stack_a, stack_b, c.ops_b - c.ops_ab, "b");
-		pa_pb(stack_a, stack_b, PB);
+		pa_pb(stack_a, stack_b, "pb");
 	}
 	sort_three(stack_a, stack_b);
 	pa_sorting(stack_a, stack_b);

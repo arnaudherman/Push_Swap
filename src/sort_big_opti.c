@@ -6,17 +6,17 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:05:08 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/19 10:42:24 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:25:17 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-int	fix_ops_b(int ops_b, int current_pos, int closest_pos)
+int	fix_ops_b(int ops_b, int current_pos, int close_pos)
 {
 	if (ops_b <= 0)
 		ops_b++;
-	if (current_pos > closest_pos)
+	if (current_pos > close_pos)
 		ops_b--;
 	return (ops_b);
 }
@@ -27,21 +27,21 @@ int	get_closest(t_element *element, t_list *stack_b)
 	t_element	*comp_b;
 
 	comp_b = stack_b->first;
-	var[0] = comp_b->pos;
-	var[1] = ft_ntp(element->pos - comp_b->pos);
-	var[2] = comp_b->pos;
+	var[0] = comp_b->position;
+	var[1] = ft_ntp(element->position - comp_b->position);
+	var[2] = comp_b->position;
 	var[3] = 1;
 	comp_b = comp_b->nxt;
 	while (comp_b)
 	{
-		if (ft_ntp(element->pos - comp_b->pos) <= var[1])
+		if (ft_ntp(element->position - comp_b->position) <= var[1])
 		{
-			var[1] = ft_ntp(element->pos - comp_b->pos);
-			var[0] = comp_b->pos;
+			var[1] = ft_ntp(element->position - comp_b->position);
+			var[0] = comp_b->position;
 		}
-		if (comp_b->pos > var[2])
-			var[2] = comp_b->pos;
-		if (element->pos > comp_b->pos)
+		if (comp_b->position > var[2])
+			var[2] = comp_b->position;
+		if (element->position > comp_b->position)
 			var[3] = 0;
 		comp_b = comp_b->nxt;
 	}
@@ -81,9 +81,9 @@ t_element	*min_ops(t_list *stack_a, t_list *stack_b, int l1, int l2)
 		if ((current->index >= 0 && current->index <= l1)
 			|| (current->index >= l2))
 		{
-			var[1] = count_op(stack_a, current->pos);
+			var[1] = count_op(stack_a, current->position);
 			var[2] = count_op(stack_b, get_closest(current, stack_b));
-			fix_ops_b(var[2], current->pos, get_closest(current, stack_b));
+			fix_ops_b(var[2], current->position, get_closest(current, stack_b));
 			if (total_ops(var[1], var[2]) < var[0])
 			{
 				best_option = current;
@@ -108,8 +108,8 @@ t_best_ops	cheapest_op(t_list *stack_a, t_list *stack_b)
 		limit[1] = stack_size(stack_a) - 8;
 	}
 	cheap.best_pos = min_ops(stack_a, stack_b, limit[0], limit[1]);
-	cheap.closest_pos = get_closest(cheap.best_pos, stack_b);
-	cheap.ops_a = count_op(stack_a, cheap.best_pos->pos);
-	cheap.ops_b = count_op(stack_b, cheap.closest_pos);
+	cheap.close_pos = get_closest(cheap.best_pos, stack_b);
+	cheap.ops_a = count_op(stack_a, cheap.best_pos->position);
+	cheap.ops_b = count_op(stack_b, cheap.close_pos);
 	return (cheap);
 }

@@ -6,13 +6,13 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:58:57 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/19 10:47:32 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:22:18 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
+void	instructionf(int num, t_list *stack_a, t_list *stack_b, ...)
 {
 	va_list	args;
 	char	*inst;
@@ -38,7 +38,7 @@ void	instructionsf(int num, t_list *stack_a, t_list *stack_b, ...)
 	}
 }
 
-void	instructions(int num, t_list *stack_a, t_list *stack_b, ...)
+void	instruction(int num, t_list *stack_a, t_list *stack_b, ...)
 {
 	va_list	args;
 	char	*inst;

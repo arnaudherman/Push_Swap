@@ -6,7 +6,7 @@
 /*   By: aherman <aherman@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:59:18 by aherman           #+#    #+#             */
-/*   Updated: 2023/05/09 11:20:55 by aherman          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:22:41 by aherman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int	second_smallest(t_list *stack)
 	t_element	*current;
 	int			smallest;
 	int			second_smallest;
-	int			pos;
+	int			position;
 
 	current = stack->first;
-	smallest = stack->first->pos;
+	smallest = stack->first->position;
 	second_smallest = 501;
 	while (current != NULL)
 	{
-		pos = current->pos;
-		if (pos < smallest)
+		position = current->position;
+		if (position < smallest)
 		{
 			second_smallest = smallest;
-			smallest = pos;
+			smallest = position;
 		}
-		else if (pos < second_smallest && pos != smallest)
-			second_smallest = pos;
+		else if (position < second_smallest && position != smallest)
+			second_smallest = position;
 		current = current->nxt;
 	}
 	return (second_smallest);
@@ -44,21 +44,21 @@ void	sort_five(t_list *stack_a, t_list *stack_b)
 	i = second_smallest(stack_a);
 	i = get_index(stack_a, i);
 	if (i == 0)
-		instructionsf(1, stack_a, stack_b, PB);
+		instructionf(1, stack_a, stack_b, "pb");
 	if (i == 1)
-		instructionsf(2, stack_a, stack_b, SA, PB);
+		instructionf(2, stack_a, stack_b, "sa", "pb");
 	if (i == 2)
-		instructionsf(3, stack_a, stack_b, RA, RA, PB);
+		instructionf(3, stack_a, stack_b, "ra", "ra", "pb");
 	if (i == 3)
-		instructionsf(3, stack_a, stack_b, RRA, RRA, PB);
+		instructionf(3, stack_a, stack_b, "rra", "rra", "pb");
 	if (i == 4)
-		instructionsf(2, stack_a, stack_b, RRA, PB);
+		instructionf(2, stack_a, stack_b, "rra", "pb");
 }
 
 void	small_sort(t_list *stack_a, t_list *stack_b, int size)
 {
 	if (size == 2)
-		instructions(1, stack_a, stack_b, SA);
+		instruction(1, stack_a, stack_b, "sa");
 	else if (size == 3)
 		sort_three(stack_a, stack_b);
 	else if (size == 4)
