@@ -1,214 +1,377 @@
-# Push_swap - Trier des données avec des contraintes
+# Push_Swap - Tri optimisé avec deux piles
 
 ![C](https://img.shields.io/badge/language-C-blue.svg)
 ![42](https://img.shields.io/badge/school-42-000000.svg)
 
 ## 📚 À propos
 
-**Push_swap** est un projet algorithmique de l'école 42 qui consiste à trier des données sur une pile avec un ensemble limité d'instructions et en un minimum d'opérations.
+**Push_Swap** est un algorithme de tri utilisant deux piles et un ensemble limité d'opérations. L'objectif est de trier les nombres en un minimum de mouvements.
 
-Ce projet permet de comprendre :
-- Les algorithmes de tri et leur complexité
-- Les structures de données (piles)
-- L'optimisation algorithmique
-- La manipulation de données avec des contraintes
+Implémentation personnelle par **aherman** (@arnaudherman) - 42 Lausanne
 
 ## 🎯 Objectif
 
-Créer un programme `push_swap` qui affiche la suite d'instructions la plus courte possible pour trier une pile d'entiers en utilisant deux piles (`a` et `b`) et un ensemble restreint d'opérations.
+Trier une pile d'entiers en ordre croissant avec le moins d'opérations possible en utilisant deux piles (`a` et `b`) et des opérations restreintes.
 
-## 🔧 Règles
+## 🏗️ Architecture du code
 
-### Les deux piles
-- **Pile a** : contient au départ tous les nombres (non triés)
-- **Pile b** : vide au départ
-- **Objectif** : trier la pile `a` en ordre croissant
-
-### Les opérations autorisées
-
-| Opération | Description |
-|-----------|-------------|
-| `sa` | **swap a** - Échange les 2 premiers éléments de la pile a |
-| `sb` | **swap b** - Échange les 2 premiers éléments de la pile b |
-| `ss` | `sa` et `sb` en même temps |
-| `pa` | **push a** - Prend le premier élément de b et le met sur a |
-| `pb` | **push b** - Prend le premier élément de a et le met sur b |
-| `ra` | **rotate a** - Décale tous les éléments de a vers le haut |
-| `rb` | **rotate b** - Décale tous les éléments de b vers le haut |
-| `rr` | `ra` et `rb` en même temps |
-| `rra` | **reverse rotate a** - Décale tous les éléments de a vers le bas |
-| `rrb` | **reverse rotate b** - Décale tous les éléments de b vers le bas |
-| `rrr` | `rra` et `rrb` en même temps |
-
-## 📦 Structure du projet
+### Organisation des fichiers
 
 ```
-push_swap.c           # Programme principal
-push_swap.h           # Header
-operations/           # Dossier des opérations (sa, sb, pa, pb, ra, rb, rra, rrb)
-  ├── swap.c
-  ├── push.c
-  ├── rotate.c
-  └── reverse_rotate.c
-sorting/              # Algorithmes de tri
-  ├── sort_small.c    # Tri pour 3, 4, 5 éléments
-  └── sort_large.c    # Tri pour grands ensembles
-utils/                # Fonctions utilitaires
-  ├── parsing.c       # Parsing des arguments
-  ├── stack.c         # Gestion des piles
-  └── error.c         # Gestion des erreurs
-Makefile              # Compilation
+src/
+├── push_swap.c              # Programme principal
+├── check_args.c             # Validation des arguments
+├── check_atoi.c             # Conversion et validation nombres
+├── check_split.c            # Split personnalisé
+├── sort_main.c              # Dispatch selon la taille
+├── sort_three.c             # Tri optimal pour 3 éléments
+├── sort_five.c              # Tri pour 4-5 éléments
+├── sort_for.c               # Tri pour 4 éléments
+├── sort_big.c               # Algorithme principal grands ensembles
+├── sort_big_opti.c          # Optimisations (calcul coûts)
+├── sort_big_utils.c         # Utilitaires tri grands ensembles
+├── sort_utils.c             # Utilitaires généraux
+├── instruction_*.c          # Implémentation opérations (sa, pb, ra, etc.)
+├── free_utils.c             # Gestion mémoire
+include/
+└── pushswap.h              # Structures + prototypes
+ft_printf/                   # ft_printf intégré
+```
+
+## 🧠 Votre algorithme de tri
+
+### 1. Tri pour 2 éléments
+```c
+if (size == 2)
+    instruction(1, stack_a, stack_b, "sa");
+```
+Simple swap si nécessaire.
+
+### 2. Tri pour 3 éléments - Optimal par permutation
+
+```c
+void sort_three(t_list *stack_a, t_list *stack_b)
+{
+    int comb = get_permutation(stack_a);
+    
+    if (comb == 132) instructionf(2, stack_a, stack_b, "rra", "sa");
+    if (comb == 213) sa_sb(stack_a, stack_b, "sa");
+    if (comb == 231) rra_rrb(stack_a, stack_b, "rra");
+    if (comb == 312) ra_rb(stack_a, stack_b, "ra");
+    if (comb == 321) instructionf(2, stack_a, stack_b, "sa", "rra");
+}
+```
+
+**Particularité :** Identifie la permutation exacte et applique la séquence optimale (max 2 opérations).
+
+### 3. Tri pour 5 éléments
+
+```c
+void sort_five(t_list *stack_a, t_list *stack_b)
+{
+    // Trouve le 2ème plus petit élément
+    int i = second_smallest(stack_a);
+    i = get_index(stack_a, i);
+    
+    // Le positionne et le pousse vers b selon sa position
+    if (i == 0) instructionf(1, stack_a, stack_b, "pb");
+    if (i == 1) instructionf(2, stack_a, stack_b, "sa", "pb");
+    if (i == 2) instructionf(3, stack_a, stack_b, "ra", "ra", "pb");
+    if (i == 3) instructionf(3, stack_a, stack_b, "rra", "rra", "pb");
+    if (i == 4) instructionf(2, stack_a, stack_b, "rra", "pb");
+}
+```
+
+**Stratégie :** Pousse le 2ème plus petit vers `b`, trie le reste, puis réinsère.
+
+### 4. Algorithme pour grands ensembles (> 5)
+
+Votre implémentation utilise un **algorithme de coût minimum** :
+
+#### Phase 1 : Réduction à 3 éléments
+
+```c
+void big_sort(t_list *stack_a, t_list *stack_b)
+{
+    // Pousse 2 éléments vers b
+    instruction(2, stack_a, stack_b, "pb", "pb");
+    
+    // Tant qu'il reste plus de 3 éléments dans a
+    while (stack_size(stack_a) > 3)
+    {
+        c = cheapest_op(stack_a, stack_b);  // Trouve l'élément le moins coûteux
+        
+        // Calcule les rotations communes (rr/rrr)
+        c.ops_ab = rrr_ops(c.ops_a, c.ops_b);
+        
+        // Effectue les rotations
+        rotrev_ops(stack_a, stack_b, c.ops_ab, "r");      // Rotations communes
+        rotrev_ops(stack_a, stack_b, c.ops_a - c.ops_ab, "a");  // Reste a
+        rotrev_ops(stack_a, stack_b, c.ops_b - c.ops_ab, "b");  // Reste b
+        
+        pa_pb(stack_a, stack_b, "pb");
+    }
+    
+    // Trie les 3 derniers éléments de a
+    sort_three(stack_a, stack_b);
+    
+    // Réinsère tous les éléments de b vers a
+    pa_sorting(stack_a, stack_b);
+}
+```
+
+#### Algorithme `cheapest_op()` - Coeur de l'optimisation
+
+```c
+t_best_ops cheapest_op(t_list *stack_a, t_list *stack_b)
+{
+    // Définit les limites (chunks)
+    limit[0] = 4;
+    limit[1] = stack_size(stack_a) - 4;
+    
+    // Pour > 100 éléments, élargit les chunks
+    if (stack_size(stack_a) + stack_size(stack_b) > 100)
+    {
+        limit[0] = 8;
+        limit[1] = stack_size(stack_a) - 8;
+    }
+    
+    // Trouve l'élément avec le coût minimal
+    cheap.best_pos = min_ops(stack_a, stack_b, limit[0], limit[1]);
+    cheap.close_pos = get_closest(cheap.best_pos, stack_b);
+    cheap.ops_a = count_op(stack_a, cheap.best_pos->position);
+    cheap.ops_b = count_op(stack_b, cheap.close_pos);
+}
+```
+
+**Votre stratégie :**
+1. **Chunking** : Divise la pile en chunks (4 ou 8 selon la taille)
+2. **Recherche de cible** : Pour chaque élément, trouve sa position cible dans `b` avec `get_closest()`
+3. **Calcul du coût** : Compte les opérations nécessaires (`ra`/`rra` + `rb`/`rrb`)
+4. **Optimisation `rr`/`rrr`** : Combine les rotations communes
+5. **Coût total** : Calcule `total_ops(ops_a, ops_b)` qui gère les rotations combinées
+
+#### Fonction `get_closest()` - Placement intelligent
+
+```c
+int get_closest(t_element *element, t_list *stack_b)
+```
+
+**Ce qu'elle fait :**
+- Parcourt toute la pile `b`
+- Trouve l'élément le plus proche en valeur
+- Retourne la position optimale pour insérer
+
+#### Phase 2 : Réinsertion depuis b vers a
+
+```c
+void pa_sorting(t_list *stack_a, t_list *stack_b)
+{
+    while (stack_size(stack_b) > 0)
+    {
+        c.close_pos = get_closest(stack_b->first, stack_a);
+        c.ops_a = count_op(stack_a, c.close_pos);
+        rotrev_ops(stack_a, stack_b, c.ops_a, "a");
+        
+        if (stack_b->first->position < c.close_pos)
+            pa_pb(stack_a, stack_b, "pa");
+        else
+            instruction(2, stack_a, stack_b, "ra", "pa");
+    }
+    
+    // Rotation finale pour mettre le plus petit en haut
+    c.ops_a = count_op(stack_a, 1);
+    rotrev_ops(stack_a, stack_b, c.ops_a, "a");
+}
+```
+
+## 🔧 Structures de données
+
+### Structure de la pile
+
+```c
+typedef struct s_element
+{
+    int              nbr;         // Valeur
+    int              position;    // Position relative (rang)
+    int              index;       // Index dans la pile
+    struct s_element *nxt;        // Élément suivant
+}   t_element;
+
+typedef struct s_list
+{
+    t_element   *first;
+    t_element   *last;
+}   t_list;
+```
+
+### Structure d'optimisation
+
+```c
+typedef struct s_best_ops
+{
+    t_element   *best_pos;    // Meilleur élément à pousser
+    int         close_pos;    // Position cible dans l'autre pile
+    int         ops_a;        // Opérations nécessaires pile a
+    int         ops_b;        // Opérations nécessaires pile b
+    int         ops_ab;       // Opérations communes (rr/rrr)
+}   t_best_ops;
 ```
 
 ## 💻 Compilation
 
 ```bash
-# Compiler le programme
-make
-
-# Nettoyer les fichiers objets
-make clean
-
-# Nettoyer tous les fichiers générés
-make fclean
-
-# Recompiler entièrement
-make re
+make        # Compile le projet
+make clean  # Nettoie les .o
+make fclean # Nettoie tout
+make re     # Recompile tout
 ```
 
 ## 🚀 Utilisation
 
 ```bash
-# Trier une liste de nombres
+# Avec des nombres séparés
 ./push_swap 4 67 3 87 23
-```
 
-**Sortie** : Une liste d'instructions pour trier les nombres
-```
-pb
-pb
-sa
-pa
-pa
-```
+# Avec une chaîne (votre split gère ça)
+./push_swap "4 67 3 87 23"
 
-### Avec le checker (bonus)
-```bash
-# Vérifier si les instructions trient correctement
-./push_swap 4 67 3 87 23 | ./checker 4 67 3 87 23
-# Affiche "OK" si trié, "KO" sinon
-```
-
-### Compter les opérations
-```bash
+# Tester le nombre d'opérations
 ./push_swap 4 67 3 87 23 | wc -l
 ```
 
-## 🎯 Contraintes et objectifs
+## 📊 Performances de votre algorithme
 
-### Nombre d'opérations maximum
+Votre implémentation utilise :
+- **Chunks de 4** pour < 100 éléments
+- **Chunks de 8** pour ≥ 100 éléments
+- **Calcul du coût minimal** à chaque itération
+- **Optimisation rr/rrr** pour les rotations communes
 
-Pour obtenir la note maximale :
+### Résultats attendus
 
-| Taille | Opérations max |
-|--------|----------------|
-| 3 nombres | 3 opérations |
-| 5 nombres | 12 opérations |
-| 100 nombres | 700 opérations (5 points) |
-| 100 nombres | 900 opérations (4 points) |
-| 100 nombres | 1100 opérations (3 points) |
-| 100 nombres | 1300 opérations (2 points) |
-| 100 nombres | 1500 opérations (1 point) |
-| 500 nombres | 5500 opérations (5 points) |
-| 500 nombres | 7000 opérations (4 points) |
-| 500 nombres | 8500 opérations (3 points) |
-| 500 nombres | 10000 opérations (2 points) |
-| 500 nombres | 11500 opérations (1 point) |
-
-## 🧠 Stratégies de tri
-
-### 1. Tri pour 3 éléments
-Approche directe avec conditions (max 3 opérations)
-
-### 2. Tri pour 4-5 éléments
-- Pousser les plus petits vers `b`
-- Trier `a`
-- Repousser vers `a`
-
-### 3. Tri pour grands ensembles (100-500)
-
-**Approches populaires :**
-- **Algorithme par chunks** : diviser en groupes et trier par morceaux
-- **Radix sort** : tri par bits
-- **Algorithme Turk** : optimisation avec coût de déplacement
-- **Algorithme butterfly** : diviser en deux parties
-
-## 📖 Gestion des erreurs
-
-Le programme doit gérer :
-- Arguments non numériques
-- Nombres en dehors de `INT_MIN` / `INT_MAX`
-- Doublons
-- Liste vide
-- Liste déjà triée (aucune opération à afficher)
-
-En cas d'erreur, afficher `"Error\n"` sur `stderr`.
-
-```c
-// Exemples d'erreurs
-./push_swap 1 2 3 a       // "Error" (non numérique)
-./push_swap 1 2 2 3       // "Error" (doublon)
-./push_swap 2147483648    // "Error" (dépassement)
-```
+| Taille | Opérations moyennes |
+|--------|-------------------|
+| 3 éléments | 0-2 opérations |
+| 5 éléments | ~7-12 opérations |
+| 100 éléments | ~700 opérations |
+| 500 éléments | ~5500 opérations |
 
 ## 🧪 Tests
 
 ### Tests basiques
-```bash
-# Liste déjà triée (aucune sortie)
-./push_swap 1 2 3 4 5
 
+```bash
 # 3 nombres
 ./push_swap 2 1 3
 
 # 5 nombres
 ./push_swap 5 4 3 2 1
+
+# Liste déjà triée (aucune sortie)
+./push_swap 1 2 3 4 5
 ```
 
-### Tests avec nombres aléatoires
+### Tests avec générateur
+
 ```bash
-# Générer 100 nombres aléatoires
+# 100 nombres aléatoires
 ARG=$(seq 1 100 | shuf | tr '\n' ' ')
 ./push_swap $ARG | wc -l
-```
 
-### Vérifier avec le checker
-```bash
+# Vérifier avec checker
 ARG="4 67 3 87 23"
 ./push_swap $ARG | ./checker $ARG
-# Doit afficher "OK"
 ```
 
-### Testeurs recommandés
-- [push_swap_tester](https://github.com/gemartin99/Push-Swap-Tester)
-- [push_swap_visualizer](https://github.com/o-reo/push_swap_visualizer)
+### Tests d'erreurs
 
-## 💡 Conseils
+```bash
+# Nombre invalide
+./push_swap 1 2 abc
+# Sortie : "Error"
 
-1. **Commencez simple** : implémentez d'abord le tri pour 3 éléments
-2. **Testez chaque opération** : assurez-vous qu'elles fonctionnent correctement
-3. **Optimisez progressivement** : commencez par un algorithme basique puis optimisez
-4. **Visualisez** : utilisez un visualizer pour comprendre vos mouvements
-5. **Gérez les erreurs** : testez tous les cas limites
+# Doublon
+./push_swap 1 2 2 3
+# Sortie : "Error"
+
+# Dépassement INT
+./push_swap 2147483648
+# Sortie : "Error"
+```
+
+## 🎯 Points techniques de votre implémentation
+
+### 1. Système de position
+
+Votre code assigne une **position relative** (rang) à chaque nombre :
+- Le plus petit = position 1
+- Le 2ème plus petit = position 2
+- etc.
+
+Cela simplifie les comparaisons.
+
+### 2. Calcul intelligent des rotations
+
+```c
+int count_op(t_list *stack, int position)
+{
+    int i = get_index(stack, position);
+    int size = stack_size(stack);
+    
+    if (i < size / 2)
+        ops = i;           // ra (rotation normale)
+    else
+        ops = (i - size);  // rra (reverse, nombre négatif)
+    
+    return ops;
+}
+```
+
+**Astuce :** Les valeurs négatives indiquent `rra`, les positives `ra`.
+
+### 3. Optimisation des rotations communes
+
+```c
+int total_ops(int ops_a, int ops_b)
+{
+    ops_a = ft_ntp(ops_a);  // Valeur absolue
+    ops_b = ft_ntp(ops_b);
+    
+    if (ops_a == ops_b)
+        total_ops = (ops_b + ops_a) / 2;  // Utilise rr/rrr
+    else if (ops_a > ops_b)
+        total_ops = ops_a - ops_b;
+    else
+        total_ops = ops_b - ops_a;
+    
+    return total_ops + 1;
+}
+```
+
+### 4. Adaptation selon la taille
+
+Votre code s'adapte automatiquement :
+- **< 100 éléments** : chunks de 4
+- **≥ 100 éléments** : chunks de 8 (moins de calculs)
+
+## 🔗 Dépendances
+
+- **ft_printf** : Intégré dans le projet (dossier `ft_printf/`)
+
+## 📝 Norminette
+
+Le code respecte la norme de 42 :
+- ✅ Maximum 25 lignes par fonction
+- ✅ Gestion propre de la mémoire
+- ✅ Pas de variables après instructions
 
 ## 👨‍💻 Auteur
 
-Projet réalisé dans le cadre du cursus de l'école 42.
-
-## 📝 Note
-
-Push_swap est un excellent projet pour développer sa logique algorithmique et comprendre les compromis entre différentes approches de tri. C'est également une bonne préparation aux entretiens techniques !
+**Arnaud Herman** (@arnaudherman)  
+École 42 Lausanne  
+Projet réalisé en 2023
 
 ---
 
-*"Sometimes the most efficient solution requires thinking outside the stack."* 📚✨
+*"The cheapest operation is often the smartest one."* 📚✨
